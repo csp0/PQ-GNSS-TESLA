@@ -5,9 +5,6 @@ This repository contains the official simulation source codes and hardware bench
 
 The proposed architecture resolves the critical Signal-in-Space (SIS) bandwidth bottleneck inherent in post-quantum (PQ) GNSS environments. This repository provides both an end-to-end MATLAB simulation framework for GPS L1C CNAV-2 and a C/C++ embedded benchmark to evaluate cross-layer authentication performance (NMA and SCA) and hardware feasibility.
                                         
-                                        2026. Sep. 24.
-                                        Chang-Seop Park.
-                                        Dankook Univ. South Korea.
 
 ## Repository Structure
 
