@@ -21,7 +21,7 @@ This folder contains the standalone MATLAB scripts specifically designed to repr
 
 ### 3. Root Directory (Core MATLAB Simulation)
 The root directory houses the core MATLAB end-to-end simulation framework for the physical and logical layer signal processing.
-* **`PQ_GNSS_TESLA_Main.m`**: The main execution script. It establishes the fundamental GPS L1C/CNAV-2 signal generation and receiver processing pipeline, atop which the proposed PQ-GNSS-TESLA architecture and related protocols are fully integrated to support both NMA and SCA. It runs the Monte Carlo simulation to evaluate the end-to-end authentication success probabilities over a range of $C/N_0$ values, generating the deep fading waterfall curves.
+* **`PQ_GNSS_TESLA_Main.m`**: The main execution script. It establishes the fundamental GPS L1C/CNAV-2 signal generation and receiver processing pipeline, atop which the proposed PQ-GNSS-TESLA architecture and related protocols are fully integrated to support both NMA and SCA. 
 * **`L1CLDPCParityCheckMatrices.mat`**: Standardized LDPC parity-check matrices for GPS L1C CNAV-2.
 * **`gpsNAVDataEncode.m` & `gpsNavigationConfig.m`**: Functions for baseband navigation data encoding, interleaving, and framing.
 * **`get_sector_pattern.mlx` & `marker_overlay_symbol.mlx`**: Live scripts containing the core logic for physical-layer Chimera marker generation, puncturing, and overlay mapping onto the primary spreading code.
