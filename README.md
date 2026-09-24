@@ -1,9 +1,13 @@
-# PQ-GNSS-TESLA
+# PQ-GNSS-TESLA 
 
 This repository contains the official simulation source codes and hardware benchmark implementations for the paper:  
-> **"PQ-GNSS-TESLA: Post-Quantum GNSS Authentication Scheme Based on Seamless TESLA Key Chains"** 
+> **"PQ-GNSS-TESLA: Post-Quantum GNSS Authentication Scheme Based on Seamless TESLA Key Chains (by Chang-Seop Park)"** 
 
 The proposed architecture resolves the critical Signal-in-Space (SIS) bandwidth bottleneck inherent in post-quantum (PQ) GNSS environments. This repository provides both an end-to-end MATLAB simulation framework for GPS L1C CNAV-2 and a C/C++ embedded benchmark to evaluate cross-layer authentication performance (NMA and SCA) and hardware feasibility.
+                                        
+                                        2026. Sep. 24.
+                                        Chang-Seop Park.
+                                        Dankook Univ. South Korea.
 
 ## Repository Structure
 
