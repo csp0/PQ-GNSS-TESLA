@@ -26,6 +26,16 @@ This directory contains the C/C++ (Arduino) benchmark source codes used to evalu
 * **Target Hardware:** Raspberry Pi Pico 2 (ARM Cortex-M33).
 * **Contents:** The benchmark sketch (`PQ_GNSS_Benchmark.ino`) and associated cryptographic libraries required to evaluate the CPU execution time and static memory footprint (Flash ROM and SRAM) for the proposed Falcon-based PQ-GNSS-TESLA scheme compared to the legacy ECDSA-based Chimera protocol.
 
+## Acknowledgements & Third-Party Libraries
+
+The embedded hardware benchmark implementations located in the `Hardware_Evaluation/` directory utilize the following open-source cryptographic libraries. We sincerely acknowledge and thank the original authors for their foundational work:
+
+* **`micro-ecc**: Utilized for the legacy ECDSA signature verification benchmark (GPS Chimera baseline). Originally developed by [Author Name, e.g., kmackay] (Available at: [Insert GitHub Link]).
+* **`crypto`**: Utilized for standard cryptographic primitives including SHA-256 hashing. Originally developed by [Author Name, e.g., Rhys Weatherley] (Available at: [Insert GitHub Link]).
+
+*Note: These libraries are included in this repository strictly for hardware benchmarking and academic reproducibility purposes, in accordance with their respective open-source licenses.*
+
+
 ##  How to Run
 
 ### Software Simulation (MATLAB)
