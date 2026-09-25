@@ -323,7 +323,6 @@ demod_payload = demod_bits(num_symbols_warmup+1 : num_symbols_warmup+num_symbols
 % [Graph Generation] BPSK Constellation Plot
 % -------------------------------------------------------------------------
 rotated_symbols = accu_prompt(num_symbols_warmup+1 : end) .* exp(-1j * phase_offset);
-
 figure('Name', 'BPSK Constellation', 'Color', 'w', 'Position', [650, 100, 450, 400]);
 scatter(real(rotated_symbols), imag(rotated_symbols), 8, 'b', 'filled', 'MarkerFaceAlpha', 0.5);
 xline(0, 'k-'); yline(0, 'k-');
@@ -379,16 +378,33 @@ catch ME
 end
 
 % ================================================================
-% [Part 8] Data Channel Authentication (Algorithm 2 & MAC Verify)
+% [Part 8] Data Channel Authentication (Algorithm 1 & 2 Integration)
 % ================================================================
 fprintf('\n[Part 8:Rx] Data Authentication (Algorithm 1 & 2 Integration)\n');
+fprintf('  > Executing LDPC Decoding (Subframe 2 & 3)...\n');
+
 rx_raw_frames = zeros(926, 5); 
+ldpc_errors = 0;
+
 for f = 1:5
     frame_bits = demod_payload((f-1)*1800 + 1 : f*1800);
     deintrlvd = matdeintrlv([frame_bits(53:1252); frame_bits(1253:1800)], 38, 46);
-    decSF2 = ldpcDecode((1 - 2 * double(deintrlvd(1:1200))) * 10, ldpcDecoderConfig(H2), 30);
-    decSF3 = ldpcDecode((1 - 2 * double(deintrlvd(1201:1748))) * 10, ldpcDecoderConfig(H3), 30);
+    
+    % Obtain Parity Check status to explicitly verify LDPC convergence (NMA Success Probability)
+    [decSF2, numIter2, parity2] = ldpcDecode((1 - 2 * double(deintrlvd(1:1200))) * 10, ldpcDecoderConfig(H2), 30);
+    [decSF3, numIter3, parity3] = ldpcDecode((1 - 2 * double(deintrlvd(1201:1748))) * 10, ldpcDecoderConfig(H3), 30);
+    
+    if any(parity2) || any(parity3)
+        ldpc_errors = ldpc_errors + 1;
+    end
+    
     rx_raw_frames(:, f) = [frame_bits(1:52); double(decSF2); double(decSF3)];
+end
+
+if ldpc_errors == 0
+    fprintf('    - [SUCCESS] LDPC Iterative Decoding converged for all frames (0 FER)!\n');
+else
+    fprintf('    - [FAILED] LDPC Decoding failed for %d frame(s) (FER > 0).\n', ldpc_errors);
 end
 
 f5_sf2 = rx_raw_frames(53:652, 5);
@@ -404,7 +420,7 @@ activeRoot = rx_root_HC2;
 if isCold
     if ~isequal(rx_k0_next, k0_next)
             error('  > [FAILED] Algorithm 2: Embedded nextRoot mismatch!');
-        end
+    end
     
     fprintf('  > Executing Algorithm 1 (Backward-Key-Chain Traversal)...\n');
     curr_itow = base_IToW + curr_epoch; 
