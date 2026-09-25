@@ -30,8 +30,8 @@ This directory contains the C/C++ (Arduino) benchmark source codes used to evalu
 
 The embedded hardware benchmark implementations located in the `Hardware_Evaluation/` directory utilize the following open-source cryptographic libraries. We sincerely acknowledge and thank the original authors for their foundational work:
 
-* **`micro-ecc**: Utilized for the legacy ECDSA signature verification benchmark (GPS Chimera baseline). Originally developed by [Kenneth MacKay] (.
-* **`crypto`**: Utilized for standard cryptographic primitives including SHA-256 hashing. Originally developed by [Author Name, e.g., Rhys Weatherley] (Available at: [Insert GitHub Link]).
+* **`micro-ecc**: Utilized for the legacy ECDSA signature verification benchmark (GPS Chimera baseline). Originally developed by [Kenneth MacKay].
+* **`crypto`**: Utilized for standard cryptographic primitives including SHA-256 hashing. Originally developed by [Southern Storm Software] 
 
 *Note: These libraries are included in this repository strictly for hardware benchmarking and academic reproducibility purposes, in accordance with their respective open-source licenses.*
 
